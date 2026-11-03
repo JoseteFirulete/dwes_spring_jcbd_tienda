@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.5</version>
+		<version>4.1.1</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.iesvegademijas.tienda_informatica</groupId>
@@ -13,7 +13,7 @@
 	<name>tienda_informatica_jdbc</name>
 	<description>Tienda Informatica project for Spring Boot</description>
 	<properties>
-		<java.version>18</java.version>
+		<java.version>25</java.version>
 	</properties>
 	<dependencies>
 
@@ -41,7 +41,6 @@
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
-			<version>5.0.1</version> <!-- hay que aceptar el warning para compatibilidad con java11+-->
 		</dependency>
 
 		<dependency>

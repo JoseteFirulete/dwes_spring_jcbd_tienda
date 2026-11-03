@@ -21,7 +21,7 @@ public class FabricanteDAOImpl  implements FabricanteDAO{
 	@Override	
 	public synchronized void create(Fabricante fabricante) {
 		
-		jdbcTemplate.update("INSERT INTO fabricante (nombre) VALUES (?)",fabricante.getNombre());
+		jdbcTemplate.update("INSERT INTO tienda.fabricante (nombre) VALUES (?)", fabricante.getNombre());
 		
 	}
 
@@ -32,7 +32,7 @@ public class FabricanteDAOImpl  implements FabricanteDAO{
 	public List<Fabricante> getAll() {
 		
 		List<Fabricante> listFab = jdbcTemplate.query(
-                "SELECT * FROM fabricante",
+                "SELECT codigo, nombre FROM tienda.fabricante",
                 (rs, rowNum) -> new Fabricante(rs.getInt("codigo"),rs.getString("nombre"))
         );
 			
@@ -47,7 +47,7 @@ public class FabricanteDAOImpl  implements FabricanteDAO{
 	public Optional<Fabricante> find(int id) {
 		
 		Fabricante fab =  jdbcTemplate
-				.queryForObject("SELECT * FROM fabricante WHERE codigo = ?"														
+				.queryForObject("SELECT codigo, nombre FROM tienda.fabricante WHERE codigo = ?"
 								, (rs, rowNum) -> new Fabricante(rs.getInt("codigo"),rs.getString("nombre"))  
 								, id
 								);
@@ -62,7 +62,8 @@ public class FabricanteDAOImpl  implements FabricanteDAO{
 	@Override
 	public void update(Fabricante fabricante) {
 		
-		int rows = jdbcTemplate.update("UPDATE fabricante SET nombre = ?  WHERE codigo = ?", fabricante.getNombre(), fabricante.getCodigo());
+		int rows = jdbcTemplate.update("UPDATE tienda.fabricante SET nombre = ? WHERE codigo = ?",
+				fabricante.getNombre(), fabricante.getCodigo());
 		if (rows == 0) System.out.println("Update de fabricante con 0 registros actualizados.");
     
 	}
@@ -73,7 +74,7 @@ public class FabricanteDAOImpl  implements FabricanteDAO{
 	@Override
 	public void delete(int id) {
 		
-		int rows = jdbcTemplate.update("DELETE FROM fabricante WHERE codigo = ?", id);
+		int rows = jdbcTemplate.update("DELETE FROM tienda.fabricante WHERE codigo = ?", id);
 		
 		if (rows == 0) System.out.println("Update de fabricante con 0 registros actualizados.");		
 		
